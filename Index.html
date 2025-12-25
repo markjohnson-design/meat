@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEATER Dual Monitor</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #111;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .header {
+            height: 40px;
+            background: #222;
+            color: #e38332; /* MEATER Orange */
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            font-weight: bold;
+            border-bottom: 2px solid #333;
+            justify-content: space-between;
+        }
+        .container {
+            display: flex;
+            width: 100vw;
+            height: calc(100vh - 42px);
+        }
+        iframe {
+            flex: 1;
+            border: none;
+        }
+        .divider {
+            width: 4px;
+            background: #333;
+        }
+        .refresh-note {
+            font-size: 11px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <span>MEATER LIVE DUAL-VIEW</span>
+        <span class="refresh-note">Auto-refreshing every 30s</span>
+    </div>
+
+    <div class="container">
+        <iframe id="probe1" src="https://cooks.cloud.meater.com/cook/e2296839-0b01-4984-8cac-36ef90902023"></iframe>
+        
+        <div class="divider"></div>
+
+        <iframe id="probe2" src="https://cooks.cloud.meater.com/cook/3fcb8fb3-c7ac-4d23-a894-c0261b45d6b7"></iframe>
+    </div>
+
+    <script>
+        // Refresh the frames every 30 seconds to keep temps current
+        setInterval(function() {
+            document.getElementById('probe1').src = document.getElementById('probe1').src;
+            document.getElementById('probe2').src = document.getElementById('probe2').src;
+        }, 30000); 
+    </script>
+
+</body>
+</html>
